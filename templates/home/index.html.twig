@@ -20,7 +20,36 @@
 		</div>
 
 		<div
-			class="row">{# affichage des 6 dernières maisons #}
+			class="row">
+			{# affichage des 6 dernières maisons #}
+			{% for maison in maisons %}
+				{% if loop.index <= 6 %}
+
+					<div class="col-12 col-md-6 col-lg-4 p-3">
+						<div class="card">
+							<img src="{{ asset('img/home.png')}}" class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">{{ maison.title }}</h5>
+								<p class="card-text">{{ maison.description|u.truncate(90,'...',true)}}</p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">surface:
+									{{ maison.surface }}</li>
+								<li class="list-group-item">piece:
+									{{ maison.rooms }}
+									dont chambre:
+									{{ maison.bedrooms }}</li>
+								<li class="list-group-item">prix
+									{{ maison.price|number_format(0,',',' ') }}
+									€</li>
+							</ul>
+							<div class="card-body text-center d-grid">
+								<a href="#" class="btn btn-secondary">Voir plus</a>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
 		</div>
 
 		<div class="row">
